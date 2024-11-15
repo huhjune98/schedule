@@ -4,6 +4,7 @@ package com.example.schedule.controller;
 import com.example.schedule.dto.MemberResponseDto;
 import com.example.schedule.dto.SignUpRequestDto;
 import com.example.schedule.dto.SignUpResponseDto;
+import com.example.schedule.service.EventService;
 import com.example.schedule.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     private final MemberService memberService;
+    private final EventService eventService;
 
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponseDto> signUp(@RequestBody SignUpRequestDto requestDto) {
@@ -41,9 +43,9 @@ public class MemberController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
 
-        memberService.delete(id);
+        eventService.delete(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
 

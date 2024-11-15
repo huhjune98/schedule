@@ -1,6 +1,7 @@
 package com.example.schedule.service;
 
 import com.example.schedule.dto.EventResponseDto;
+import com.example.schedule.dto.MemberResponseDto;
 import com.example.schedule.entity.Event;
 import com.example.schedule.entity.Member;
 import com.example.schedule.repository.EventRepository;
@@ -35,6 +36,20 @@ public class EventService {
                 .stream()
                 .map(EventResponseDto::toDto)
                 .toList();
+    }
+
+    public MemberResponseDto findMemberById(Long id) {
+        Event findEvent = eventRepository.findByIdOrElseThrow(id);
+        Member writer = findEvent.getMember();
+
+        return new MemberResponseDto(findEvent.getUsername(), findEvent.getTitle());
+    }
+
+    public void delete(Long id) {
+
+        Event findEvent = eventRepository.findByIdOrElseThrow(id);
+
+        eventRepository.delete(findEvent);
     }
 
 }

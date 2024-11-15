@@ -7,10 +7,7 @@ import com.example.schedule.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +31,12 @@ public class EventController {
         List<EventResponseDto> eventResponseDtoList = eventService.findAll();
 
         return new ResponseEntity<>(eventResponseDtoList, HttpStatus.OK);
+    }
+
+    @GetMapping("/events/{id}")
+    public ResponseEntity<EventResponseDto> findById(@PathVariable Long id) {
+        eventService.findMemberById(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
