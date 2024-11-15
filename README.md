@@ -244,6 +244,6 @@
 
 
 ## ERD
-![image](https://github.com/user-attachments/assets/60fe60d6-ded3-4d61-8bc9-adf3a2d7b5e7)
 
+<img width="466" alt="스크린샷 2024-11-14 오후 7 31 53" src="https://github.com/user-attachments/assets/054786f7-b31f-4af1-ab75-f3ff09e9be8e">
 
