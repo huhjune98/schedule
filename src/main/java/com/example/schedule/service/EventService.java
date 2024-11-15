@@ -8,6 +8,8 @@ import com.example.schedule.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EventService {
@@ -26,6 +28,13 @@ public class EventService {
 
         return new EventResponseDto(event.getId(), event.getUsername(), event.getTitle(), event.getContents());
 
+    }
+
+    public List<EventResponseDto> findAll() {
+        return eventRepository.findAll()
+                .stream()
+                .map(EventResponseDto::toDto)
+                .toList();
     }
 
 }

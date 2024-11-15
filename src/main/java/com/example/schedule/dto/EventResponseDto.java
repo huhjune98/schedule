@@ -1,6 +1,7 @@
 package com.example.schedule.dto;
 
 
+import com.example.schedule.entity.Event;
 import lombok.Getter;
 
 @Getter
@@ -20,5 +21,9 @@ public class EventResponseDto {
         this.username = username;
         this.title = title;
         this.contents = contents;
+    }
+
+    public static EventResponseDto toDto(Event event) {
+        return new EventResponseDto(event.getId(), event.getUsername(), event.getTitle(), event.getContents());
     }
 }
