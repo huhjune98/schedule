@@ -1,5 +1,6 @@
 package com.example.schedule.service;
 
+import com.example.schedule.dto.LoginRequestDto;
 import com.example.schedule.dto.MemberResponseDto;
 import com.example.schedule.dto.SignUpResponseDto;
 import com.example.schedule.entity.Member;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -49,5 +51,15 @@ public class MemberService {
 
         memberRepository.delete(findMember);
 
+    }
+
+    public Member loginUser(LoginRequestDto loginRequestDto) {
+
+        Member member = memberRepository.findByEmail(loginRequestDto.getEmail());
+
+        if(member == null ||!Objects.equals(member.getPassword(),loginRequestDto.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "유효하지 않은 이메일 또는 잘못된 비밀번호");
+        }
+        return member;
     }
 }
