@@ -7,8 +7,8 @@ CREATE TABLE User (
                       modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Schedule (
-                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE Event (
+                          event_id BIGINT PRIMARY KEY AUTO_INCREMENT,
                           user_id BIGINT NOT NULL,
                           user_name VARCHAR(20) NOT NULL ,
                           title VARCHAR(20),
